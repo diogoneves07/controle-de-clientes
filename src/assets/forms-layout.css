@@ -110,12 +110,11 @@
 
 .forms-layout div {
   text-align: right;
-  position: relative;
-  left: -40px;
+  margin-right: 30px;
 }
 
 .forms-layout button {
-  margin: 10px 20px;
+  margin: 20px 20px;
   padding: 10px;
   border-radius: 5px;
   border-width: 1px 0px;

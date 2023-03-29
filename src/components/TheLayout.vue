@@ -6,12 +6,12 @@ import BottomNavigation from './TheBottomNavigation.vue'
 <template>
   <div class="layout">
     <header class="layout-header">
-      <div>
-        <RouterLink to="/">
+      <RouterLink to="/">
+        <div>
           <VIcon icon="mdi-account-multiple-plus-outline"></VIcon>
           <span>Controle de clientes</span>
-        </RouterLink>
-      </div>
+        </div>
+      </RouterLink>
     </header>
     <div class="layout-content">
       <main>

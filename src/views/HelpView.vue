@@ -1,11 +1,11 @@
 <script setup lang="ts">
 import MainLayout from '../components/TheLayout.vue'
-import TheTextContainer from '../components/TheTextContainer.vue'
+import TextContainer from '../components/TextContainer.vue'
 </script>
 
 <template>
   <MainLayout>
-    <TheTextContainer>
+    <TextContainer>
       <h2>Ajuda</h2>
       <p>
         Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolore at consequuntur deleniti
@@ -15,6 +15,6 @@ import TheTextContainer from '../components/TheTextContainer.vue'
         impedit, cumque in blanditiis explicabo maxime ipsam quam dolore! Consequuntur illo et quo
         maxime a?
       </p>
-    </TheTextContainer>
+    </TextContainer>
   </MainLayout>
 </template>

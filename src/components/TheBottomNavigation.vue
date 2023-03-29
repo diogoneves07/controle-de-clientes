@@ -8,12 +8,14 @@ import AddOrderButton from './OrderButtonAdd.vue'
   <div class="bottom-navigation">
     <div className="bottom-navigation-fixed bottom-navigation-buttons">
       <div class="bottom-navigation-fixed-container">
-        <VBtn>
-          <span>
-            <VIcon icon="mdi-account-check"></VIcon>
-            Clientes
-          </span>
-        </VBtn>
+        <RouterLink to="clientes">
+          <VBtn>
+            <span>
+              <VIcon icon="mdi-account-check"></VIcon>
+              Clientes
+            </span>
+          </VBtn>
+        </RouterLink>
 
         <RouterLink to="adicionar-cliente">
           <AddOrderButton />

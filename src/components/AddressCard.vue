@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { VCardTitle, VCardItem, VCard, VCardText, VCardActions, VBtn } from 'vuetify/components'
+import { VCardTitle, VCard, VCardText, VCardActions, VBtn } from 'vuetify/components'
 import { ref } from 'vue'
 
 const props = defineProps<{
@@ -22,17 +22,30 @@ function toggleCardSelectState() {
   <VCard class="card">
     <VCardTitle class="card-title">{{ props.title }}</VCardTitle>
 
-    <VCardItem @click="toggleCardSelectState" v-if="cardImage" class="card-image">
-      <img :src="props.cardImage" />
-    </VCardItem>
-
     <VCardText class="card-desc">
       {{ props.desc }}
     </VCardText>
 
     <VCardActions class="card-actions">
       <VBtn @click="toggleCardSelectState" class="heart-btn">
-        <VIcon icon="mdi-heart" :style="{ color: isCardSelected ? 'red' : '' }"></VIcon>
+        <VIcon
+          icon="mdi-heart"
+          :style="{ color: isCardSelected ? 'red' : '', transition: '0s' }"
+        ></VIcon>
+      </VBtn>
+
+      <VBtn @click="toggleCardSelectState" class="heart-btn">
+        <VIcon
+          icon="mdi-application-edit-outline"
+          :style="{ color: isCardSelected ? 'red' : '', transition: '0s' }"
+        ></VIcon>
+      </VBtn>
+
+      <VBtn @click="toggleCardSelectState" class="heart-btn">
+        <VIcon
+          icon="mdi-delete"
+          :style="{ color: isCardSelected ? 'red' : '', transition: '0s' }"
+        ></VIcon>
       </VBtn>
     </VCardActions>
   </VCard>
@@ -47,25 +60,11 @@ function toggleCardSelectState() {
 
 .card-title {
   font-size: 16px;
-  padding: 2% 4%;
-}
-.card-image {
-  width: 100%;
-  box-sizing: border-box;
-  display: flex;
-  padding: 1%;
-  align-items: center;
-  justify-content: center;
-  height: 230px;
-  cursor: pointer;
-}
-.card-image img {
-  max-width: 100%;
-  max-height: 100%;
+  padding: 5% 4%;
 }
 
 .card-desc {
-  text-align: justify;
+  text-align: justify !important;
   line-height: 25px !important;
   height: 80px;
   overflow: auto;
@@ -88,10 +87,11 @@ function toggleCardSelectState() {
   padding: 4%;
 }
 .card-actions i {
-  font-size: 40px;
+  font-size: 28px;
 }
 .heart-btn {
   height: 40px !important;
   color: red;
+  transition: 0s all !important;
 }
 </style>

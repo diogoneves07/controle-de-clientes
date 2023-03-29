@@ -6,8 +6,7 @@
 <style>
 .text {
   display: flex;
-  justify-content: center;
-  align-items: center;
+
   text-align: justify;
   font-size: 17px;
 }
