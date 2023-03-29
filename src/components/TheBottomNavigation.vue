@@ -21,11 +21,11 @@ import AddOrderButton from './OrderButtonAdd.vue'
           <AddOrderButton />
         </RouterLink>
 
-        <RouterLink to="ajuda">
+        <RouterLink to="manual">
           <VBtn>
             <span>
               <VIcon icon="mdi-help"></VIcon>
-              Ajuda
+              manual
             </span>
           </VBtn>
         </RouterLink>

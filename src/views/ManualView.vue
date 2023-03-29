@@ -6,7 +6,7 @@ import TextContainer from '../components/TextContainer.vue'
 <template>
   <MainLayout>
     <TextContainer>
-      <h2>Ajuda</h2>
+      <h2>manual</h2>
       <p>
         Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolore at consequuntur deleniti
         similique fuga assumenda hic harum, nemo dolorum illo eius, corrupti alias doloremque
