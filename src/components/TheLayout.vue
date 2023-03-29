@@ -7,13 +7,13 @@ import BottomNavigation from './TheBottomNavigation.vue'
   <div class="layout">
     <header class="layout-header">
       <div>
-        <a href=".">
+        <RouterLink to="/">
           <VIcon icon="mdi-account-multiple-plus-outline"></VIcon>
           <span>Controle de clientes</span>
-        </a>
+        </RouterLink>
       </div>
     </header>
-    <div class="layout-grid">
+    <div class="layout-content">
       <main>
         <slot></slot>
       </main>
@@ -30,18 +30,19 @@ import BottomNavigation from './TheBottomNavigation.vue'
   background-attachment: fixed;
 }
 
-.layout-grid {
+.layout-content {
   min-height: 100vh;
   margin-top: 10px;
   background-color: var(--dark-background-color-soft);
   background-attachment: fixed;
   padding: 2%;
 }
-.layout-grid main {
+.layout-content main {
   display: grid;
   align-items: center;
   justify-content: center;
-  min-height: 72vh;
+  margin-top: 30px;
+  margin-bottom: 50px;
 }
 
 .layout-header {

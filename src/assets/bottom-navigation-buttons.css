@@ -1,7 +1,6 @@
 .bottom-navigation-buttons button {
   height: 40px;
-  min-width: 70px;
-  margin: 0 25px;
+  margin: 0 15px;
   background-color: rgb(2, 22, 53);
   text-align: center;
   font-size: 12px;
@@ -11,4 +10,11 @@
   align-items: center;
   justify-content: center;
   color: #fff;
+}
+
+@media screen and (min-width: 700px) {
+  .bottom-navigation-buttons button {
+    min-width: 70px;
+    margin: 0 25px;
+  }
 }

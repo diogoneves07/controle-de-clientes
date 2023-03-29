@@ -6,7 +6,7 @@ import TheTextContainer from '../components/TheTextContainer.vue'
 <template>
   <MainLayout>
     <TheTextContainer>
-      <h2>Sistema de controle de clientes</h2>
+      <h2>Ajuda</h2>
       <p>
         Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolore at consequuntur deleniti
         similique fuga assumenda hic harum, nemo dolorum illo eius, corrupti alias doloremque

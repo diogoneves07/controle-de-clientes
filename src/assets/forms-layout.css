@@ -1,14 +1,18 @@
 .forms-layout {
   text-align: left;
-  padding: 20px;
   background-color: var(--dark-background-color);
-  max-width: 600px;
-  min-width: 99%;
   border-radius: 0px 70px;
-  margin: 0 1%;
+  margin: 0;
   transform: translateZ(0);
   overflow: hidden;
-  box-sizing: border-box;
+  padding: 10px;
+  box-sizing: content-box;
+}
+@media screen and (min-width: 700px) {
+  .forms-layout {
+    padding: 20px;
+    width: 550px;
+  }
 }
 
 .forms-layout * {
@@ -72,14 +76,13 @@
 }
 .forms-layout fieldset {
   text-align: left;
-  padding: 0px;
-  width: 100%;
-  border: 0px;
-  border-radius: 0px 20px;
+  margin: 0;
+  border: 0;
 }
 
 .forms-layout input,
-.forms-layout textarea {
+.forms-layout textarea,
+.forms-layout select {
   margin: 20px;
   padding: 20px;
   border: 0px;
@@ -94,12 +97,21 @@
   height: 50px;
 }
 
+.forms-layout select {
+  width: 200px;
+  padding: 0 20px;
+  height: 50px;
+  background-color: var(--dark-background-color);
+}
+
 .forms-layout textarea {
   height: 120px;
 }
 
 .forms-layout div {
   text-align: right;
+  position: relative;
+  left: -40px;
 }
 
 .forms-layout button {

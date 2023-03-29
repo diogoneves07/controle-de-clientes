@@ -11,18 +11,22 @@ import AddOrderButton from './OrderButtonAdd.vue'
         <VBtn>
           <span>
             <VIcon icon="mdi-account-check"></VIcon>
-            Tabela de clientes
+            Clientes
           </span>
         </VBtn>
 
-        <AddOrderButton />
+        <RouterLink to="adicionar-cliente">
+          <AddOrderButton />
+        </RouterLink>
 
-        <VBtn>
-          <span>
-            <VIcon icon="mdi-help"></VIcon>
-            Ajuda
-          </span>
-        </VBtn>
+        <RouterLink to="ajuda">
+          <VBtn>
+            <span>
+              <VIcon icon="mdi-help"></VIcon>
+              Ajuda
+            </span>
+          </VBtn>
+        </RouterLink>
       </div>
     </div>
   </div>
@@ -36,7 +40,6 @@ import AddOrderButton from './OrderButtonAdd.vue'
   color: #fff;
   background-color: transparent;
 }
-
 .bottom-navigation-fixed {
   position: fixed;
   bottom: 0px;
@@ -45,7 +48,7 @@ import AddOrderButton from './OrderButtonAdd.vue'
   background-color: rgb(1, 18, 43);
   width: 100%;
   z-index: 99999;
-  overflow-x: auto;
+  overflow: visible;
 }
 
 .bottom-navigation-fixed-container {

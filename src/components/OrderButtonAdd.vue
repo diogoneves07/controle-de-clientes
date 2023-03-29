@@ -4,23 +4,15 @@ import { VBtn, VIcon } from 'vuetify/components'
 </script>
 
 <template>
-  <div class="add-order bottom-navigation-buttons">
-    <VBtn>
-      <VIcon icon="mdi-plus mdi-light"></VIcon>
-    </VBtn>
-  </div>
+  <VBtn class="add-order">
+    <VIcon icon="mdi-plus mdi-light"></VIcon>
+  </VBtn>
 </template>
 
 <style>
 .add-order {
-  width: 100px;
-  overflow: visible;
-}
-
-.add-order button {
-  position: fixed;
-  bottom: 65px;
-  border-radius: 0;
+  position: relative;
+  top: -30px;
 }
 
 .add-order i {
@@ -28,11 +20,5 @@ import { VBtn, VIcon } from 'vuetify/components'
   position: relative;
   top: 0px !important;
   left: 0px !important;
-}
-@media screen and (min-width: 700px) {
-  .add-order button {
-    position: fixed;
-    bottom: 35px;
-  }
 }
 </style>
