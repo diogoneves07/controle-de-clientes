@@ -1,48 +1,21 @@
 <script setup lang="ts">
 import '@/assets/bottom-navigation-buttons.css'
+import { getAllClientsInDB, deleteClientFromDB } from '@/indexdb/operations'
+import type { ClientDataWithID } from '@/indexdb/operations'
+import { ref } from 'vue'
 
-let desserts = [
-  {
-    name: 'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Explicabo ipsum distinctio veritatis soluta corporis, eos odit in fuga aperiam cupiditate eaque repellendus quisquam eligendi vero quod delectus alias architecto fugit.',
-    calories: 159
-  },
-  {
-    name: 'Ice cream sandwich',
-    calories: 237
-  },
-  {
-    name: 'Eclair',
-    calories: 262
-  },
-  {
-    name: 'Cupcake',
-    calories: 305
-  },
-  {
-    name: 'Gingerbread',
-    calories: 356
-  },
-  {
-    name: 'Jelly bean',
-    calories: 375
-  },
-  {
-    name: 'Lollipop',
-    calories: 392
-  },
-  {
-    name: 'Honeycomb',
-    calories: 408
-  },
-  {
-    name: 'Donut',
-    calories: 452
-  },
-  {
-    name: 'KitKat',
-    calories: 518
+const clients = ref<ClientDataWithID[]>([])
+
+getAllClientsInDB().then((data) => {
+  clients.value = data
+})
+
+function deleteClient(id: number) {
+  if (confirm('Tem certeza que deseja apagar esse cliente?')) {
+    deleteClientFromDB(id)
+    clients.value = clients.value.filter((client) => client.id !== id)
   }
-]
+}
 </script>
 <template>
   <div class="table-container">
@@ -56,15 +29,15 @@ let desserts = [
         </tr>
       </thead>
       <tbody>
-        <tr v-for="item in desserts" :key="item.name">
-          <td>{{ item.name }}</td>
-          <td>{{ item.calories }}</td>
-          <td>{{ item.calories }}</td>
+        <tr v-for="client in clients" :key="client.name">
+          <td>{{ client.name }}</td>
+          <td>{{ client.email }}</td>
+          <td>{{ client.personType }}</td>
           <td class="bottom-navigation-buttons actions">
             <VBtn class="heart-btn">
               <VIcon icon="mdi-application-edit-outline"></VIcon>
             </VBtn>
-            <VBtn class="heart-btn">
+            <VBtn class="heart-btn" @click="() => deleteClient(client.id)">
               <VIcon icon="mdi-delete"></VIcon>
             </VBtn>
           </td>
