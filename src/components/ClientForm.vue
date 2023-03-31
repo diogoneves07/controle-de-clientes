@@ -2,12 +2,14 @@
 import '@/assets/forms-layout.css'
 import '@/assets/bottom-navigation-buttons.css'
 
-import TheAddressForm from './TheAddressForm.vue'
 import { ref, toRaw } from 'vue'
+
+import TheAddressForm from './TheAddressForm.vue'
 import AddressCard from './AddressCard.vue'
 import type { ClientAddress, ClientData } from '@/indexdb/schemas'
 import { insertClientInDB, updateClientInDB } from '@/indexdb/operations'
 import type { ClientDataWithID } from '@/indexdb/operations'
+import router from '@/router'
 
 const props = defineProps<{ client?: ClientDataWithID }>()
 
@@ -65,6 +67,7 @@ function insertOrUpdateClient() {
   } else {
     insertClientInDB(toRaw(client.value))
   }
+  router.replace({ path: 'status' })
 }
 </script>
 
