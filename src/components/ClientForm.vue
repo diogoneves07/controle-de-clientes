@@ -7,21 +7,27 @@ import { ref, toRaw } from 'vue'
 import TheAddressForm from './TheAddressForm.vue'
 import AddressCard from './AddressCard.vue'
 import type { ClientAddress, ClientData } from '@/indexdb/schemas'
-import { insertClientInDB, updateClientInDB } from '@/indexdb/operations'
+import { getClientInDBByid, insertClientInDB, updateClientInDB } from '@/indexdb/operations'
 import type { ClientDataWithID } from '@/indexdb/operations'
 import router from '@/router'
 
-const props = defineProps<{ client?: ClientDataWithID }>()
+const paramId = new URL(location.href).searchParams.get('id')
 
-const client = ref<ClientData | ClientDataWithID>(
-  props.client || {
-    name: '',
-    personType: 'Fisíca',
-    phoneNumber: '',
-    email: '',
-    addresses: []
-  }
-)
+const clientId = paramId && parseFloat(paramId)
+
+const client = ref<ClientData | ClientDataWithID>({
+  name: '',
+  personType: 'Fisíca',
+  phoneNumber: '',
+  email: '',
+  addresses: []
+})
+
+if (clientId) {
+  getClientInDBByid(clientId).then((c) => {
+    client.value = c
+  })
+}
 
 let isModalFormAddressOpen = ref(false)
 let clientAddressToUpdate = ref<undefined | ClientAddress>(undefined)
@@ -30,6 +36,7 @@ function onCardEdit(address: ClientAddress) {
   clientAddressToUpdate.value = address
   isModalFormAddressOpen.value = true
 }
+
 function closeAddressForm() {
   clientAddressToUpdate.value = undefined
   isModalFormAddressOpen.value = false
@@ -62,12 +69,12 @@ function onCardDeleted(address: ClientAddress) {
 }
 
 function insertOrUpdateClient() {
-  if (props.client) {
+  if (clientId) {
     updateClientInDB(toRaw(client.value) as ClientDataWithID)
   } else {
     insertClientInDB(toRaw(client.value))
   }
-  router.replace({ path: 'status' })
+  router.push({ path: 'status' })
 }
 </script>
 
@@ -75,7 +82,7 @@ function insertOrUpdateClient() {
   <form @submit.prevent="insertOrUpdateClient" class="forms-layout">
     <fieldset>
       <legend>
-        {{ props.client ? 'Atualize os dados do cliente!' : 'Cadastre o novo cliente!' }}
+        {{ clientId ? 'Atualize os dados do cliente!' : 'Cadastre o novo cliente!' }}
       </legend>
       <label>
         Nome:
@@ -135,12 +142,13 @@ function insertOrUpdateClient() {
       <div>
         <button type="submit" class="btn-border-green">
           <VIcon icon="mdi-content-save-check-outline"></VIcon>
-          {{ props.client ? 'Atualizar cliente!' : 'Salvar cliente' }}
+          {{ clientId ? 'Atualizar cliente!' : 'Salvar cliente' }}
         </button>
       </div>
     </fieldset>
   </form>
 </template>
+
 <style>
 .person-type div {
   display: flex;

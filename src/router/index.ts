@@ -21,7 +21,11 @@ const router = createRouter({
       name: 'adicionar-cliente',
       component: () => import('../views/RegisteClientView.vue')
     },
-
+    {
+      path: '/editar-cliente',
+      name: 'editar-cliente',
+      component: () => import('../views/RegisteClientView.vue')
+    },
     {
       path: '/clientes',
       name: 'clientes',
