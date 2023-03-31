@@ -1,13 +1,37 @@
 <script setup lang="ts">
+import type { ClientAddress } from '@/indexdb/schemas'
 import { ref } from 'vue'
 
-const props = defineProps<{ onClose?: () => void }>()
+const props = defineProps<{
+  clientAddress?: ClientAddress
+  onClose?: () => void
+  onAddress: (address: ClientAddress) => void
+}>()
+
+const clientAddress = ref(
+  props.clientAddress ||
+    ({
+      CEP: 0,
+      city: '',
+      state: '',
+      neighborhood: '',
+      street: '',
+      homeNumber: 0,
+      details: '',
+      isMain: false
+    } as ClientAddress)
+)
 
 let dialog = ref(true)
 
 function closeModal() {
   props.onClose && props.onClose()
   dialog.value = false
+}
+
+function saveAddress() {
+  props.onAddress(clientAddress.value)
+  closeModal()
 }
 </script>
 
@@ -24,41 +48,55 @@ function closeModal() {
           <VContainer>
             <VRow>
               <VCol cols="12" sm="6" md="4">
-                <VTextField label="CEP*" required></VTextField>
+                <VTextField v-model="clientAddress.CEP" label="CEP*" required></VTextField>
               </VCol>
               <VCol cols="12" sm="6" md="4">
-                <VTextField label="Cidade" hint="Savador"></VTextField>
+                <VTextField v-model="clientAddress.city" label="Cidade" hint="Savador"></VTextField>
               </VCol>
               <VCol cols="12" sm="6" md="4">
-                <VTextField label="Estado" hint="BAHIA"></VTextField>
+                <VTextField v-model="clientAddress.state" label="Estado" hint="BAHIA"></VTextField>
               </VCol>
 
               <VCol cols="12">
-                <VTextField label="Bairro*" type="password" required></VTextField>
+                <VTextField
+                  v-model="clientAddress.neighborhood"
+                  label="Bairro*"
+                  type="text"
+                  required
+                ></VTextField>
               </VCol>
 
               <VCol cols="12" sm="6" md="20">
-                <VTextField label="Rua*" hint="Savador"></VTextField>
+                <VTextField v-model="clientAddress.street" label="Rua*" hint="Savador"></VTextField>
               </VCol>
 
               <VCol cols="12" sm="6" md="20">
-                <VTextField label="Número*" required></VTextField>
+                <VTextField
+                  v-model="clientAddress.homeNumber"
+                  label="Número*"
+                  required
+                ></VTextField>
               </VCol>
 
               <VCol cols="12">
-                <VTextField label="Complemento" type="text" required></VTextField>
+                <VTextField
+                  v-model="clientAddress.details"
+                  label="Complemento"
+                  type="text"
+                  required
+                ></VTextField>
               </VCol>
             </VRow>
           </VContainer>
         </VCardText>
-        <VCardActions>
+        <VCardActions class="actions-btns">
           <VSpacer></VSpacer>
 
           <VBtn color="blue-darken-1" variant="text" @click="closeModal">
             <VIcon icon="mdi-close"></VIcon>
             Fechar
           </VBtn>
-          <VBtn color="blue-darken-1" variant="text" @click="closeModal">
+          <VBtn color="blue-darken-1" variant="text" @click="saveAddress">
             <VIcon icon="mdi-content-save-check-outline"></VIcon>
             Salvar
           </VBtn>
@@ -70,5 +108,8 @@ function closeModal() {
 <style>
 .address-modal-container {
   background-color: var(--dark-background-color);
+}
+.actions-btns button {
+  font-size: 14px;
 }
 </style>

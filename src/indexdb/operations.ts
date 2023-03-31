@@ -14,6 +14,7 @@ export function insertClientInDB(client: ClientData) {
   const transaction = clients.db.transaction(clientStoreName, 'readwrite')
   const clientsStore = transaction.objectStore(clientStoreName)
 
+  console.log(client)
   clientsStore.add(client)
 }
 
@@ -29,6 +30,20 @@ export function deleteClientFromDB(id: number) {
   const clientsStore = transaction.objectStore(clientStoreName)
 
   clientsStore.delete(id)
+}
+
+export function updateClientInDB(newClientData: ClientDataWithID) {
+  if (!clients.db) {
+    clientsBDRequest.addEventListener('success', () => {
+      updateClientInDB(newClientData)
+    })
+    return
+  }
+
+  const transaction = clients.db.transaction(clientStoreName, 'readwrite')
+  const clientsStore = transaction.objectStore(clientStoreName)
+
+  clientsStore.put(newClientData)
 }
 
 export function getClientInDBByid(id: number) {

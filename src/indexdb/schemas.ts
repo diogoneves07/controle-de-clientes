@@ -11,7 +11,7 @@ export interface ClientAddress {
 
 export interface ClientData {
   name: string
-  personType: string
+  personType: 'Fisíca' | 'Juridíca'
   phoneNumber: string
   email: string
   addresses: ClientAddress[]

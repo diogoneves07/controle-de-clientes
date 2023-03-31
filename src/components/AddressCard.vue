@@ -1,51 +1,51 @@
 <script setup lang="ts">
 import { VCardTitle, VCard, VCardText, VCardActions, VBtn } from 'vuetify/components'
 import { ref } from 'vue'
+import type { ClientAddress } from '@/indexdb/schemas'
 
 const props = defineProps<{
-  title: string
-  subTitle?: string
-  cardImage?: string
-  desc: string
-  cardWidth?: number
-  onSelectCard?: () => void
+  clientAddress: ClientAddress
+  onCardSelected: () => void
+  onCardDeleted: () => void
+  onCardEdit: () => void
 }>()
 
-let isCardSelected = ref(false)
+let isCardSelected = ref(props.clientAddress.isMain)
+
+function cardTitle() {
+  return `${props.clientAddress.street}  | ${props.clientAddress.homeNumber}`
+}
 
 function toggleCardSelectState() {
   isCardSelected.value = !isCardSelected.value
+  props.onCardSelected()
 }
 </script>
 
 <template>
   <VCard class="card">
-    <VCardTitle class="card-title">{{ props.title }}</VCardTitle>
+    <VCardTitle class="card-title">{{ cardTitle() }}</VCardTitle>
 
     <VCardText class="card-desc">
-      {{ props.desc }}
+      <strong>CEP: {{ props.clientAddress.CEP }}</strong>
+      <strong>Rua: {{ props.clientAddress.street }}</strong>
+      <strong>Casa: {{ props.clientAddress.homeNumber }}</strong>
     </VCardText>
 
     <VCardActions class="card-actions">
       <VBtn @click="toggleCardSelectState" class="heart-btn">
         <VIcon
           icon="mdi-heart"
-          :style="{ color: isCardSelected ? 'red' : '', transition: '0s' }"
+          :style="{ color: props.clientAddress.isMain ? 'red' : '', transition: '0s' }"
         ></VIcon>
       </VBtn>
 
-      <VBtn @click="toggleCardSelectState" class="heart-btn">
-        <VIcon
-          icon="mdi-application-edit-outline"
-          :style="{ color: isCardSelected ? 'red' : '', transition: '0s' }"
-        ></VIcon>
+      <VBtn @click="onCardEdit" class="heart-btn">
+        <VIcon icon="mdi-application-edit-outline"></VIcon>
       </VBtn>
 
-      <VBtn @click="toggleCardSelectState" class="heart-btn">
-        <VIcon
-          icon="mdi-delete"
-          :style="{ color: isCardSelected ? 'red' : '', transition: '0s' }"
-        ></VIcon>
+      <VBtn @click="props.onCardDeleted" class="heart-btn">
+        <VIcon icon="mdi-delete"></VIcon>
       </VBtn>
     </VCardActions>
   </VCard>
@@ -55,12 +55,13 @@ function toggleCardSelectState() {
 .card {
   background-color: var(--dark-background-color);
   margin: 30px;
-  max-width: 349px;
+  max-width: 300px;
 }
 
 .card-title {
   font-size: 16px;
   padding: 5% 4%;
+  text-align: center !important;
 }
 
 .card-desc {
@@ -80,6 +81,11 @@ function toggleCardSelectState() {
 .card-desc::-webkit-scrollbar-corner {
   background-color: #000;
 }
+.card-desc strong {
+  float: left;
+  width: 100%;
+  margin: 3px 0;
+}
 .card-actions {
   display: flex;
   align-items: center;
@@ -87,7 +93,10 @@ function toggleCardSelectState() {
   padding: 4%;
 }
 .card-actions i {
-  font-size: 28px;
+  font-size: 25px;
+}
+.card-actions button {
+  margin: 0;
 }
 .heart-btn {
   height: 40px !important;

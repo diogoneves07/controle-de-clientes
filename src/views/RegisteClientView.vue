@@ -1,10 +1,10 @@
 <script setup lang="ts">
 import TheLayout from '../components/TheLayout.vue'
-import TheRegisteClientForm from '../components/TheRegisteClientForm.vue'
+import ClientForm from '../components/ClientForm.vue'
 </script>
 
 <template>
   <TheLayout>
-    <TheRegisteClientForm />
+    <ClientForm />
   </TheLayout>
 </template>
