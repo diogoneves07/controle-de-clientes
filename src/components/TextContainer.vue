@@ -16,5 +16,6 @@
 }
 .text p {
   margin-top: 30px;
+  line-height: 38px;
 }
 </style>
