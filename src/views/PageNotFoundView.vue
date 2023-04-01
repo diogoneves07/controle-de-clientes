@@ -8,9 +8,9 @@ import TextContainer from '@/components/TextContainer.vue'
   <MainLayout>
     <TextContainer>
       <StatusMessage>
-        <strong>A operação foi realizada com sucesso!</strong>
+        <strong>A página não foi encontrada!</strong>
         <div class="icon-position">
-          <VIcon icon="mdi-check-outline"></VIcon>
+          <VIcon icon="mdi-note-off-outline"></VIcon>
         </div>
       </StatusMessage>
     </TextContainer>
@@ -23,6 +23,5 @@ import TextContainer from '@/components/TextContainer.vue'
   justify-content: center;
   margin-top: 30px;
   font-size: 30px;
-  text-align: justify !important;
 }
 </style>

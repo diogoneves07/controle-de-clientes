@@ -2,12 +2,34 @@
 import '@/assets/bottom-navigation-buttons.css'
 import { getAllClientsInDB, deleteClientFromDB } from '@/indexdb/operations'
 import type { ClientDataWithID } from '@/indexdb/operations'
-import { ref } from 'vue'
+import { ref, watchEffect } from 'vue'
 
 const clients = ref<ClientDataWithID[]>([])
 
+const searchingBy = ref<string | undefined>(undefined)
+
+let clientsNames = ref(clients.value.map((item) => item.name))
+
+watchEffect(() => {
+  clientsNames.value = clients.value.map((item) => item.name)
+})
+
+watchEffect(() => {
+  clients.value = clients.value.sort((_a, b) => {
+    const a = searchingBy.value?.toLocaleLowerCase() || ''
+    const bLower = b.name.toLocaleLowerCase()
+    if (a < bLower) {
+      return -1
+    }
+    if (a >= bLower) {
+      return 1
+    }
+    return 0
+  })
+})
+
 getAllClientsInDB().then((data) => {
-  clients.value = data
+  clients.value = data.slice().reverse()
 })
 
 function deleteClient(id: number) {
@@ -17,8 +39,16 @@ function deleteClient(id: number) {
   }
 }
 </script>
+
 <template>
   <div class="table-container">
+    <VAutocomplete
+      theme="dark"
+      label="Nome do cliente"
+      v-model="searchingBy"
+      :no-data-text="searchingBy ? 'Não encontrado!' : 'Digite algo...'"
+      :items="clientsNames"
+    ></VAutocomplete>
     <VTable fixed-header class="table" height="500px">
       <thead>
         <tr>
@@ -34,9 +64,12 @@ function deleteClient(id: number) {
           <td>{{ client.email }}</td>
           <td>{{ client.personType }}</td>
           <td class="bottom-navigation-buttons actions">
-            <VBtn class="heart-btn">
-              <VIcon icon="mdi-application-edit-outline"></VIcon>
-            </VBtn>
+            <RouterLink :to="{ name: 'editar-cliente', query: { id: client.id } }">
+              <VBtn class="heart-btn">
+                <VIcon icon="mdi-application-edit-outline"></VIcon>
+              </VBtn>
+            </RouterLink>
+
             <VBtn class="heart-btn" @click="() => deleteClient(client.id)">
               <VIcon icon="mdi-delete"></VIcon>
             </VBtn>

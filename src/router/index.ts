@@ -1,5 +1,6 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import HomeView from '../views/HomeView.vue'
+import PageNotFoundViewVue from '../views/PageNotFoundView.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -36,6 +37,11 @@ const router = createRouter({
       path: '/status',
       name: 'status',
       component: () => import('../views/ClientInsertionStatusView.vue')
+    },
+
+    {
+      path: '/:catchAll(.*)',
+      component: PageNotFoundViewVue
     }
   ]
 })

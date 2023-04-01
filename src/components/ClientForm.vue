@@ -9,7 +9,9 @@ import AddressCard from './AddressCard.vue'
 import type { ClientAddress, ClientData } from '@/indexdb/schemas'
 import { getClientInDBByid, insertClientInDB, updateClientInDB } from '@/indexdb/operations'
 import type { ClientDataWithID } from '@/indexdb/operations'
-import router from '@/router'
+import { useRouter } from 'vue-router'
+
+const router = useRouter()
 
 const paramId = new URL(location.href).searchParams.get('id')
 
