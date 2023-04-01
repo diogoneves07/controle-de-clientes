@@ -12,7 +12,7 @@ import TextContainer from '../components/TextContainer.vue'
     </p>
 
     <div class="clients-img">
-      <img src="../assets/clients.png" />
+      <img src="imagesgit/clients.png" />
     </div>
 
     <p>
