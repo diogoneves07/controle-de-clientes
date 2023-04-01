@@ -9,8 +9,7 @@ const paramId = new URL(location.href).searchParams.get('id')
 const clientId = paramId && parseFloat(paramId)
 const client = ref<ClientData | undefined | null>(undefined)
 const defaultText = 'Não inserido!'
-
-const mainAddress = ref<ClientAddress>({
+const defaultMainAddress = {
   CEP: 0,
   city: '',
   state: '',
@@ -19,14 +18,17 @@ const mainAddress = ref<ClientAddress>({
   homeNumber: 0,
   details: '',
   isMain: true
-})
+}
+
+const mainAddress = ref<ClientAddress>(defaultMainAddress)
 
 if (clientId) {
   getClientInDBByid(clientId)
     .then((c) => {
       if (c) {
         client.value = c
-        mainAddress.value = c.addresses.find((item) => item.isMain) as ClientAddress
+        mainAddress.value = (c.addresses.find((item) => item.isMain) ||
+          defaultMainAddress) as ClientAddress
       } else {
         client.value = null
       }
