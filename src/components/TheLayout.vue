@@ -22,7 +22,7 @@ import BottomNavigation from './TheBottomNavigation.vue'
   </div>
 </template>
 
-<style>
+<style scoped>
 .layout {
   padding-bottom: 1vh;
   width: 100%;

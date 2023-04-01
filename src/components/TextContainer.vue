@@ -3,10 +3,9 @@
     <div><slot></slot></div>
   </div>
 </template>
-<style>
+<style scoped>
 .text {
   display: flex;
-
   text-align: justify;
   font-size: 17px;
 }

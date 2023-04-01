@@ -13,7 +13,7 @@ import TextContainer from '@/components/TextContainer.vue'
     </StatusMessage>
   </TextContainer>
 </template>
-<style>
+<style scoped>
 .icon-position {
   display: flex;
   align-items: center;

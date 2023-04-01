@@ -9,7 +9,7 @@ import { VBtn, VIcon } from 'vuetify/components'
   </VBtn>
 </template>
 
-<style>
+<style scoped>
 .add-order {
   position: relative;
   top: -30px;

@@ -105,7 +105,7 @@ function saveAddress() {
     </VDialog>
   </VRow>
 </template>
-<style>
+<style scoped>
 .address-modal-container {
   background-color: var(--dark-background-color);
 }

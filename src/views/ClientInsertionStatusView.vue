@@ -4,21 +4,18 @@ import TextContainer from '@/components/TextContainer.vue'
 </script>
 
 <template>
-  <TextContainer>
-    <StatusMessage class="message">
-      <section>
-        <strong>A operação foi realizada com sucesso!</strong>
-        <div class="icon-position">
-          <VIcon icon="mdi-check-outline"></VIcon>
-        </div>
-      </section>
-    </StatusMessage>
-  </TextContainer>
+  <StatusMessage class="message">
+    <TextContainer>
+      <strong>A operação foi realizada com sucesso!</strong>
+      <div class="icon-position">
+        <VIcon icon="mdi-check-outline"></VIcon>
+      </div>
+    </TextContainer>
+  </StatusMessage>
 </template>
 
-<style>
+<style scoped>
 .message {
-  font-size: 20px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -29,7 +26,7 @@ import TextContainer from '@/components/TextContainer.vue'
   align-items: center;
   justify-content: center;
   margin-top: 30px;
-  font-size: 30px;
+  font-size: 35px;
   text-align: justify !important;
 }
 </style>

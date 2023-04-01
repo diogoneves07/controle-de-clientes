@@ -163,7 +163,7 @@ function insertOrUpdateClient() {
         </button>
       </label>
 
-      <div>
+      <div class="btn-right">
         <button type="submit" class="btn-border-green">
           <VIcon icon="mdi-content-save-check-outline"></VIcon>
           {{ clientId ? 'Atualizar cliente!' : 'Salvar cliente' }}
@@ -173,7 +173,7 @@ function insertOrUpdateClient() {
   </form>
 </template>
 
-<style>
+<style scoped>
 .person-type div {
   display: flex;
   justify-self: center;

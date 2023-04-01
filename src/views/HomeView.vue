@@ -22,7 +22,7 @@ import TextContainer from '../components/TextContainer.vue'
     </p>
   </TextContainer>
 </template>
-<style>
+<style scoped>
 .clients-img {
   display: flex;
   align-items: center;

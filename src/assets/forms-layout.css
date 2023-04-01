@@ -6,7 +6,6 @@
   transform: translateZ(0);
   overflow: hidden;
   padding: 10px;
-  box-sizing: content-box;
 }
 @media screen and (min-width: 700px) {
   .forms-layout {
@@ -108,7 +107,7 @@
   height: 120px;
 }
 
-.forms-layout div {
+.btn-right {
   text-align: right;
   margin-right: 30px;
 }

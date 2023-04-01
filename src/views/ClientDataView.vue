@@ -40,18 +40,18 @@ if (clientId) {
 </script>
 
 <template>
-  <TextContainer>
-    <StatusMessage class="message" v-if="!client">
-      <section>
-        <strong>
-          {{ client === undefined ? 'Aguarde...' : 'O cliente não foi encontrado!' }}
-        </strong>
-        <div class="icon-position">
-          <VIcon icon="mdi-account-search-outline"></VIcon>
-        </div>
-      </section>
-    </StatusMessage>
-    <StatusMessage v-else>
+  <StatusMessage class="message" v-if="!client">
+    <TextContainer class="client-data">
+      <strong>
+        {{ client === undefined ? 'Aguarde...' : 'O cliente não foi encontrado!' }}
+      </strong>
+      <div class="icon-position">
+        <VIcon icon="mdi-account-search-outline"></VIcon>
+      </div>
+    </TextContainer>
+  </StatusMessage>
+  <StatusMessage v-else>
+    <TextContainer>
       <section class="client-data">
         <h2>informações do cliente:</h2>
         <dl>
@@ -109,11 +109,11 @@ if (clientId) {
           </dd>
         </dl>
       </section>
-    </StatusMessage>
-  </TextContainer>
+    </TextContainer>
+  </StatusMessage>
 </template>
 
-<style>
+<style scoped>
 .message {
   font-size: 20px;
   display: flex;
@@ -131,7 +131,7 @@ if (clientId) {
 }
 .client-data {
   width: 100%;
-  padding: 10px;
+  padding: 0px !important;
   text-align: left;
 }
 .client-data dl {

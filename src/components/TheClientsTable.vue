@@ -84,7 +84,7 @@ function deleteClient(id: number) {
   </div>
 </template>
 
-<style>
+<style scoped>
 .table-container {
   overflow: auto;
   margin: 30px 0;
@@ -116,6 +116,8 @@ function deleteClient(id: number) {
 }
 .actions button {
   margin: 0px;
+  margin-top: 10px;
+
   box-shadow: none;
   background-color: transparent;
   float: left;

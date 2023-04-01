@@ -51,7 +51,7 @@ function toggleCardSelectState() {
   </VCard>
 </template>
 
-<style>
+<style scoped>
 .card {
   background-color: var(--dark-background-color);
   margin: 30px;
