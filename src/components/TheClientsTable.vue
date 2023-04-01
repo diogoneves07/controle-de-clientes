@@ -8,6 +8,10 @@ const clients = ref<ClientDataWithID[]>([])
 
 const searchingBy = ref<string | undefined>(undefined)
 
+let confirmDeleteDialog = ref(false)
+
+let clientTobeDeleted = ref<undefined | ClientDataWithID>(undefined)
+
 let clientsNames = ref(clients.value.map((item) => item.name))
 
 watchEffect(() => {
@@ -32,10 +36,11 @@ getAllClientsInDB().then((data) => {
   clients.value = data.slice().reverse()
 })
 
-function deleteClient(id: number) {
-  if (confirm('Tem certeza que deseja apagar esse cliente?')) {
-    deleteClientFromDB(id)
-    clients.value = clients.value.filter((client) => client.id !== id)
+function deleteClient() {
+  if (clientTobeDeleted.value) {
+    deleteClientFromDB(clientTobeDeleted.value.id)
+    clients.value = clients.value.filter((client) => client !== clientTobeDeleted.value)
+    confirmDeleteDialog.value = false
   }
 }
 </script>
@@ -73,7 +78,15 @@ function deleteClient(id: number) {
                   <VIcon icon="mdi-application-edit-outline"></VIcon>
                 </VBtn>
               </RouterLink>
-              <VBtn title="Deletar cliente" @click="() => deleteClient(client.id)">
+              <VBtn
+                title="Deletar cliente"
+                @click="
+                  () => {
+                    confirmDeleteDialog = true
+                    clientTobeDeleted = client
+                  }
+                "
+              >
                 <VIcon icon="mdi-delete"></VIcon>
               </VBtn>
             </div>
@@ -81,6 +94,22 @@ function deleteClient(id: number) {
         </tr>
       </tbody>
     </VTable>
+
+    <VDialog v-model="confirmDeleteDialog" persistent max-width="550px">
+      <VCard class="confirm-delete-dialog bottom-navigation-buttons">
+        <VCardTitle class="text-h5">
+          Apagar {{ clientTobeDeleted?.name || 'cliente' }}?
+        </VCardTitle>
+        <VCardText>Tem certeza que deseja apagar esse cliente?</VCardText>
+        <VCardActions>
+          <VSpacer></VSpacer>
+          <VBtn color="green-darken-1" variant="text" @click="() => deleteClient()"> Sim </VBtn>
+          <VBtn color="green-darken-1" variant="text" @click="confirmDeleteDialog = false">
+            Cancelar
+          </VBtn>
+        </VCardActions>
+      </VCard>
+    </VDialog>
   </div>
 </template>
 
@@ -127,5 +156,8 @@ function deleteClient(id: number) {
 }
 .actions i {
   font-size: 21px;
+}
+.confirm-delete-dialog {
+  background-color: var(--dark-background-color) !important;
 }
 </style>

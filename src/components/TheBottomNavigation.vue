@@ -49,7 +49,7 @@ import AddOrderButton from './OrderButtonAdd.vue'
   height: 55px;
   background-color: rgb(1, 18, 43);
   width: 100%;
-  z-index: 99999;
+  z-index: 9;
   overflow: visible;
 }
 
