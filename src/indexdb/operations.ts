@@ -47,7 +47,7 @@ export function updateClientInDB(newClientData: ClientDataWithID) {
 }
 
 export function getClientInDBByid(id: number) {
-  const fn = (r: (client: ClientDataWithID) => void) => {
+  const fn = (r: (client: ClientDataWithID) => void, reject: () => void) => {
     const transaction = clientsBDRequest.result.transaction(clientStoreName, 'readonly')
     const clientsStore = transaction.objectStore(clientStoreName)
     const d = clientsStore.get(id)
@@ -55,13 +55,17 @@ export function getClientInDBByid(id: number) {
     d.addEventListener('success', () => {
       r(d.result)
     })
+
+    d.addEventListener('error', () => {
+      reject()
+    })
   }
 
-  return new Promise<ClientDataWithID>((r) => {
-    if (clients.db) return fn(r)
+  return new Promise<ClientDataWithID>((r, reject) => {
+    if (clients.db) return fn(r, reject)
 
     clientsBDRequest.addEventListener('success', () => {
-      fn(r)
+      fn(r, reject)
     })
   })
 }

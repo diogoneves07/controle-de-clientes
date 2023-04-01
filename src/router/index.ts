@@ -1,6 +1,7 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import HomeView from '../views/HomeView.vue'
 import PageNotFoundViewVue from '../views/PageNotFoundView.vue'
+import ClientDataView from '../views/ClientDataView.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -23,7 +24,12 @@ const router = createRouter({
       component: () => import('../views/RegisteClientView.vue')
     },
     {
-      path: '/editar-cliente',
+      path: '/dados-do-cliente',
+      name: 'dados-do-cliente',
+      component: ClientDataView
+    },
+    {
+      path: '/dados-do-cliente',
       name: 'editar-cliente',
       component: () => import('../views/RegisteClientView.vue')
     },

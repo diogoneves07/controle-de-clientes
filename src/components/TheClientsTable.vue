@@ -58,19 +58,29 @@ function deleteClient(id: number) {
         </tr>
       </thead>
       <tbody>
-        <tr v-for="client in clients" :key="client.name">
+        <tr v-for="client in clients" :key="client.name + client.person.id">
           <td>{{ client.name }}</td>
-          <td>{{ client.personType }}</td>
-          <td class="bottom-navigation-buttons actions">
-            <RouterLink :to="{ name: 'editar-cliente', query: { id: client.id } }">
-              <VBtn class="heart-btn">
-                <VIcon icon="mdi-application-edit-outline"></VIcon>
-              </VBtn>
-            </RouterLink>
+          <td>{{ client.person.type }}</td>
+          <td class="bottom-navigation-buttons">
+            <div class="actions">
+              <RouterLink :to="{ name: 'dados-do-cliente', query: { id: client.id } }">
+                <VBtn title="Ver informações do cliente">
+                  <VIcon icon="mdi-eye"></VIcon>
+                </VBtn>
+              </RouterLink>
 
-            <VBtn class="heart-btn" @click="() => deleteClient(client.id)">
-              <VIcon icon="mdi-delete"></VIcon>
-            </VBtn>
+              <RouterLink :to="{ name: 'editar-cliente', query: { id: client.id } }">
+                <VBtn title="Editar cliente">
+                  <VIcon icon="mdi-application-edit-outline"></VIcon>
+                </VBtn>
+              </RouterLink>
+
+              <div>
+                <VBtn title="Deletar cliente" @click="() => deleteClient(client.id)">
+                  <VIcon icon="mdi-delete"></VIcon>
+                </VBtn>
+              </div>
+            </div>
           </td>
         </tr>
       </tbody>
@@ -91,8 +101,8 @@ function deleteClient(id: number) {
   border-left: 1px solid rgb(1, 25, 62);
 }
 .table td {
-  max-width: 200px !important;
-  padding: 20px !important;
+  width: 33% !important;
+  padding: 10px 20px !important;
   text-align: justify;
 }
 @media screen and (min-width: 850px) {
@@ -105,19 +115,23 @@ function deleteClient(id: number) {
   color: #fff !important;
 }
 .actions {
-  width: 120px;
-  height: auto;
+  width: 100% !important;
+  text-align: center;
+}
+.actions div {
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 .actions button {
   margin: 5px;
-  display: inline-block;
   box-shadow: none;
   background-color: transparent;
+  display: inline-block;
 }
 .actions button:hover {
   box-shadow: none;
 }
-
 .actions i {
   font-size: 21px;
 }

@@ -19,7 +19,10 @@ const clientId = paramId && parseFloat(paramId)
 
 const client = ref<ClientData | ClientDataWithID>({
   name: '',
-  personType: 'Fisíca',
+  person: {
+    type: 'Fisíca',
+    id: ''
+  },
   phoneNumber: '',
   email: '',
   addresses: []
@@ -71,6 +74,10 @@ function onCardDeleted(address: ClientAddress) {
 }
 
 function insertOrUpdateClient() {
+  client.value.addresses = client.value.addresses.map((item) => {
+    return toRaw(item)
+  })
+
   if (clientId) {
     updateClientInDB(toRaw(client.value) as ClientDataWithID)
   } else {
@@ -88,18 +95,31 @@ function insertOrUpdateClient() {
       </legend>
       <label>
         Nome:
-        <input type="text" v-model="client.name" placeholder="Insira o nome do cliente" />
+        <input type="text" v-model="client.name" placeholder="Insira o nome do cliente" required />
       </label>
 
       <label class="person-type">
         <div>
-          <select v-model="client.personType">
-            <option :selected="client.personType === 'Fisíca'" value="Fisíca">Pessoa Fisíca</option>
-            <option :selected="client.personType === 'Juridíca'" value="Juridíca">
+          <select v-model="client.person.type">
+            <option :selected="client.person.type === 'Fisíca'" value="Fisíca">
+              Pessoa Fisíca
+            </option>
+            <option :selected="client.person.type === 'Juridíca'" value="Juridíca">
               Pessoa Juridíca
             </option>
           </select>
         </div>
+      </label>
+
+      <label>
+        {{ client.person.type === 'Fisíca' ? 'CPF' : 'CNPJ' }}:
+        <input
+          type="text"
+          v-model="client.person.id"
+          :placeholder="
+            'Insira o ' + (client.person.type === 'Fisíca' ? 'CPF' : 'CNPJ') + ' do cliente'
+          "
+        />
       </label>
 
       <label>
@@ -110,10 +130,12 @@ function insertOrUpdateClient() {
           placeholder="Insira o número de telefone do cliente"
         />
       </label>
+
       <label>
         e-mail:
         <input type="email" v-model="client.email" placeholder="Insira o e-mail do cliente" />
       </label>
+
       <label> Endereços: </label>
 
       <TheAddressForm

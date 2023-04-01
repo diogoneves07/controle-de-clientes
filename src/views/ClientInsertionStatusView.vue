@@ -7,16 +7,26 @@ import TextContainer from '@/components/TextContainer.vue'
 <template>
   <MainLayout>
     <TextContainer>
-      <StatusMessage>
-        <strong>A operação foi realizada com sucesso!</strong>
-        <div class="icon-position">
-          <VIcon icon="mdi-check-outline"></VIcon>
-        </div>
+      <StatusMessage class="message">
+        <section>
+          <strong>A operação foi realizada com sucesso!</strong>
+          <div class="icon-position">
+            <VIcon icon="mdi-check-outline"></VIcon>
+          </div>
+        </section>
       </StatusMessage>
     </TextContainer>
   </MainLayout>
 </template>
+
 <style>
+.message {
+  font-size: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 300px;
+}
 .icon-position {
   display: flex;
   align-items: center;

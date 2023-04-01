@@ -16,12 +16,7 @@ import '@/assets/forms-layout.css'
   overflow: hidden;
   padding: 20px !important;
   box-sizing: content-box;
-  height: 300px;
-  color: red;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 20px;
+  min-height: 300px;
   text-align: justify;
 }
 </style>
