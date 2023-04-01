@@ -27,6 +27,7 @@ import TextContainer from '../components/TextContainer.vue'
   display: flex;
   align-items: center;
   justify-content: center;
+  margin: 25px 0;
 }
 .clients-img img {
   max-height: 200px;
