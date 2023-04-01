@@ -9,6 +9,7 @@
   text-align: justify;
   font-size: 17px;
 }
+
 .text div {
   max-width: 750px;
   padding: 20px;

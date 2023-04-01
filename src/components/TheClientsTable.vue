@@ -87,7 +87,7 @@ function deleteClient(id: number) {
 <style scoped>
 .table-container {
   overflow: auto;
-  margin: 30px 0;
+  margin: 30px 5px;
 }
 .table {
   background-color: var(--dark-background-color);
