@@ -33,18 +33,18 @@ function toggleCardSelectState() {
     </VCardText>
 
     <VCardActions class="card-actions">
-      <VBtn @click="toggleCardSelectState" class="heart-btn">
+      <VBtn @click="toggleCardSelectState" class="btns-icons">
         <VIcon
           icon="mdi-heart"
           :style="{ color: props.clientAddress.isMain ? 'red' : '', transition: '0s' }"
         ></VIcon>
       </VBtn>
 
-      <VBtn @click="onCardEdit" class="heart-btn">
+      <VBtn @click="onCardEdit" class="btns-icons">
         <VIcon icon="mdi-application-edit-outline"></VIcon>
       </VBtn>
 
-      <VBtn @click="props.onCardDeleted" class="heart-btn">
+      <VBtn @click="props.onCardDeleted" class="btns-icons">
         <VIcon icon="mdi-delete"></VIcon>
       </VBtn>
     </VCardActions>
@@ -98,9 +98,8 @@ function toggleCardSelectState() {
 .card-actions button {
   margin: 0;
 }
-.heart-btn {
+.btns-icons {
   height: 40px !important;
-  color: red;
   transition: 0s all !important;
 }
 </style>
