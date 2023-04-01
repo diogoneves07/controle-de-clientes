@@ -68,18 +68,14 @@ function deleteClient(id: number) {
                   <VIcon icon="mdi-eye"></VIcon>
                 </VBtn>
               </RouterLink>
-
               <RouterLink :to="{ name: 'editar-cliente', query: { id: client.id } }">
                 <VBtn title="Editar cliente">
                   <VIcon icon="mdi-application-edit-outline"></VIcon>
                 </VBtn>
               </RouterLink>
-
-              <div>
-                <VBtn title="Deletar cliente" @click="() => deleteClient(client.id)">
-                  <VIcon icon="mdi-delete"></VIcon>
-                </VBtn>
-              </div>
+              <VBtn title="Deletar cliente" @click="() => deleteClient(client.id)">
+                <VIcon icon="mdi-delete"></VIcon>
+              </VBtn>
             </div>
           </td>
         </tr>
@@ -118,16 +114,11 @@ function deleteClient(id: number) {
   width: 100% !important;
   text-align: center;
 }
-.actions div {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
 .actions button {
-  margin: 5px;
+  margin: 0px;
   box-shadow: none;
   background-color: transparent;
-  display: inline-block;
+  float: left;
 }
 .actions button:hover {
   box-shadow: none;
