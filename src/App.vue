@@ -1,7 +1,11 @@
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import TheLayout from './components/TheLayout.vue'
+</script>
 
 <template>
-  <RouterView />
+  <TheLayout>
+    <RouterView />
+  </TheLayout>
 </template>
 
 <style scoped></style>

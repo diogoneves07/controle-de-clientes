@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import MainLayout from '../components/TheLayout.vue'
 import StatusMessage from '@/components/StatusMessage.vue'
 import TextContainer from '@/components/TextContainer.vue'
 import { getClientInDBByid } from '@/indexdb/operations'
@@ -39,79 +38,77 @@ if (clientId) {
 </script>
 
 <template>
-  <MainLayout>
-    <TextContainer>
-      <StatusMessage class="message" v-if="!client">
-        <section>
-          <strong>
-            {{ client === undefined ? 'Aguarde...' : 'O cliente não foi encontrado!' }}
-          </strong>
-          <div class="icon-position">
-            <VIcon icon="mdi-account-search-outline"></VIcon>
-          </div>
-        </section>
-      </StatusMessage>
-      <StatusMessage v-else>
-        <section class="client-data">
-          <h2>informações do cliente:</h2>
-          <dl>
-            <dt>Nome:</dt>
-            <dd>{{ client.name }}</dd>
-          </dl>
-          <dl>
-            <dt>{{ client.person.type === 'Fisíca' ? 'CPF' : 'CNPJ' }}:</dt>
-            <dd>{{ client.person.id || defaultText }}</dd>
-          </dl>
-          <dl>
-            <dt>Tipo:</dt>
-            <dd>{{ client.person.type }}</dd>
-          </dl>
-          <dl>
-            <dt>E-mail:</dt>
-            <dd>{{ client.email || defaultText }}</dd>
-          </dl>
-          <dl>
-            <dt>Telefone:</dt>
-            <dd>{{ client.phoneNumber || defaultText }}</dd>
-          </dl>
+  <TextContainer>
+    <StatusMessage class="message" v-if="!client">
+      <section>
+        <strong>
+          {{ client === undefined ? 'Aguarde...' : 'O cliente não foi encontrado!' }}
+        </strong>
+        <div class="icon-position">
+          <VIcon icon="mdi-account-search-outline"></VIcon>
+        </div>
+      </section>
+    </StatusMessage>
+    <StatusMessage v-else>
+      <section class="client-data">
+        <h2>informações do cliente:</h2>
+        <dl>
+          <dt>Nome:</dt>
+          <dd>{{ client.name }}</dd>
+        </dl>
+        <dl>
+          <dt>{{ client.person.type === 'Fisíca' ? 'CPF' : 'CNPJ' }}:</dt>
+          <dd>{{ client.person.id || defaultText }}</dd>
+        </dl>
+        <dl>
+          <dt>Tipo:</dt>
+          <dd>{{ client.person.type }}</dd>
+        </dl>
+        <dl>
+          <dt>E-mail:</dt>
+          <dd>{{ client.email || defaultText }}</dd>
+        </dl>
+        <dl>
+          <dt>Telefone:</dt>
+          <dd>{{ client.phoneNumber || defaultText }}</dd>
+        </dl>
 
-          <dl>
-            <dt>Endereço principal:</dt>
-            <dd>
-              <dl>
-                <dt>CEP:</dt>
-                <dd>{{ mainAddress.CEP || defaultText }}</dd>
-              </dl>
-              <dl>
-                <dt>Cidade:</dt>
-                <dd>{{ mainAddress.city || defaultText }}</dd>
-              </dl>
-              <dl>
-                <dt>Estado:</dt>
-                <dd>{{ mainAddress.state || defaultText }}</dd>
-              </dl>
-              <dl>
-                <dt>Bairro:</dt>
-                <dd>{{ mainAddress.neighborhood || defaultText }}</dd>
-              </dl>
-              <dl>
-                <dt>Rua:</dt>
-                <dd>{{ mainAddress.street || defaultText }}</dd>
-              </dl>
-              <dl>
-                <dt>Número:</dt>
-                <dd>{{ mainAddress.homeNumber || defaultText }}</dd>
-              </dl>
-              <dl>
-                <dt>Complemento:</dt>
-                <dd>{{ mainAddress.details || defaultText }}</dd>
-              </dl>
-            </dd>
-          </dl>
-        </section>
-      </StatusMessage>
-    </TextContainer>
-  </MainLayout>
+        <dl>
+          <dt>Endereço principal:</dt>
+          <dd>
+            <dl>
+              <dt>CEP:</dt>
+              <dd>{{ mainAddress.CEP || defaultText }}</dd>
+            </dl>
+            <dl>
+              <dt>Cidade:</dt>
+              <dd>{{ mainAddress.city || defaultText }}</dd>
+            </dl>
+            <dl>
+              <dt>Estado:</dt>
+              <dd>{{ mainAddress.state || defaultText }}</dd>
+            </dl>
+            <dl>
+              <dt>Bairro:</dt>
+              <dd>{{ mainAddress.neighborhood || defaultText }}</dd>
+            </dl>
+            <dl>
+              <dt>Rua:</dt>
+              <dd>{{ mainAddress.street || defaultText }}</dd>
+            </dl>
+            <dl>
+              <dt>Número:</dt>
+              <dd>{{ mainAddress.homeNumber || defaultText }}</dd>
+            </dl>
+            <dl>
+              <dt>Complemento:</dt>
+              <dd>{{ mainAddress.details || defaultText }}</dd>
+            </dl>
+          </dd>
+        </dl>
+      </section>
+    </StatusMessage>
+  </TextContainer>
 </template>
 
 <style>

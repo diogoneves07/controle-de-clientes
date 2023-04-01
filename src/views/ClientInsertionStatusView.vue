@@ -1,22 +1,19 @@
 <script setup lang="ts">
-import MainLayout from '../components/TheLayout.vue'
 import StatusMessage from '@/components/StatusMessage.vue'
 import TextContainer from '@/components/TextContainer.vue'
 </script>
 
 <template>
-  <MainLayout>
-    <TextContainer>
-      <StatusMessage class="message">
-        <section>
-          <strong>A operação foi realizada com sucesso!</strong>
-          <div class="icon-position">
-            <VIcon icon="mdi-check-outline"></VIcon>
-          </div>
-        </section>
-      </StatusMessage>
-    </TextContainer>
-  </MainLayout>
+  <TextContainer>
+    <StatusMessage class="message">
+      <section>
+        <strong>A operação foi realizada com sucesso!</strong>
+        <div class="icon-position">
+          <VIcon icon="mdi-check-outline"></VIcon>
+        </div>
+      </section>
+    </StatusMessage>
+  </TextContainer>
 </template>
 
 <style>
