@@ -12,7 +12,7 @@
 }
 .text div {
   max-width: 750px;
-  padding: 2%;
+  padding: 20px;
 }
 .text p {
   margin-top: 30px;
