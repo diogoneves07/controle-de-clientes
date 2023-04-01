@@ -1,7 +1,11 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import HomeView from '../views/HomeView.vue'
-import PageNotFoundViewVue from '../views/PageNotFoundView.vue'
+import PageNotFoundView from '../views/PageNotFoundView.vue'
 import ClientDataView from '../views/ClientDataView.vue'
+import ManualView from '@/views/ManualView.vue'
+import RegisteClientView from '../views/RegisteClientView.vue'
+import ClientsView from '@/views/ClientsView.vue'
+import ClientInsertionStatusView from '../views/ClientInsertionStatusView.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -15,13 +19,13 @@ const router = createRouter({
     {
       path: '/manual',
       name: 'manual',
-      component: () => import('../views/ManualView.vue')
+      component: ManualView
     },
 
     {
       path: '/adicionar-cliente',
       name: 'adicionar-cliente',
-      component: () => import('../views/RegisteClientView.vue')
+      component: RegisteClientView
     },
     {
       path: '/dados-do-cliente',
@@ -31,23 +35,23 @@ const router = createRouter({
     {
       path: '/dados-do-cliente',
       name: 'editar-cliente',
-      component: () => import('../views/RegisteClientView.vue')
+      component: RegisteClientView
     },
     {
       path: '/clientes',
       name: 'clientes',
-      component: () => import('../views/ClientsView.vue')
+      component: ClientsView
     },
 
     {
       path: '/status',
       name: 'status',
-      component: () => import('../views/ClientInsertionStatusView.vue')
+      component: ClientInsertionStatusView
     },
 
     {
       path: '/:catchAll(.*)',
-      component: PageNotFoundViewVue
+      component: PageNotFoundView
     }
   ]
 })
