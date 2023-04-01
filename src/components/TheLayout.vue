@@ -35,7 +35,7 @@ import BottomNavigation from './TheBottomNavigation.vue'
   margin-top: 10px;
   background-color: var(--dark-background-color-soft);
   background-attachment: fixed;
-  padding: 2%;
+  padding: 2% 5px;
 }
 .layout-content main {
   display: grid;

@@ -53,7 +53,6 @@ function deleteClient(id: number) {
       <thead>
         <tr>
           <th class="text-left">Nome</th>
-          <th class="text-left">Email</th>
           <th class="text-left">Tipo</th>
           <th class="text-left">Ações</th>
         </tr>
@@ -61,7 +60,6 @@ function deleteClient(id: number) {
       <tbody>
         <tr v-for="client in clients" :key="client.name">
           <td>{{ client.name }}</td>
-          <td>{{ client.email }}</td>
           <td>{{ client.personType }}</td>
           <td class="bottom-navigation-buttons actions">
             <RouterLink :to="{ name: 'editar-cliente', query: { id: client.id } }">
@@ -87,7 +85,7 @@ function deleteClient(id: number) {
 }
 .table {
   background-color: var(--dark-background-color);
-  min-width: 430px;
+  min-width: 400px;
 }
 .table th {
   border-left: 1px solid rgb(1, 25, 62);
