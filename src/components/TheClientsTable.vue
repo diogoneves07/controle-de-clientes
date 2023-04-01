@@ -87,7 +87,7 @@ function deleteClient(id: number) {
 }
 .table {
   background-color: var(--dark-background-color);
-  min-width: 500px;
+  min-width: 430px;
 }
 .table th {
   border-left: 1px solid rgb(1, 25, 62);
